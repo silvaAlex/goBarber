@@ -1,14 +1,23 @@
 module.exports = {
   development: {
-    dialet: 'postgres',
-    host: 'localhost',
     username: 'postgres',
     password: 'docker',
     database: 'gobarber',
-    define: {
-      timestamp: true,
-      underscored: true,
-      underscoredAll: true,
-    },
+    host: 'localhost',
+    dialect: 'postgres',
+  },
+  test: {
+    username: 'postgres',
+    password: 'docker',
+    database: 'gobarber_test',
+    host: 'localhost',
+    dialect: 'postgres',
+  },
+  production: {
+    username: 'postgres',
+    password: 'docker',
+    database: 'gobarber_prod',
+    host: 'localhost',
+    dialect: 'postgres',
   },
 };

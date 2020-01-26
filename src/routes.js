@@ -1,9 +1,23 @@
 import { Router } from 'express';
+import multer from 'multer';
+
+import UserController from './app/controllers/UserController';
+import SessionController from './app/controllers/SessionController';
+import FileController from './app/controllers/FileController';
+
+import authMiddleware from './app/middlewares/auth';
+import configMulter from './config/multer';
 
 const routes = new Router();
 
-routes.get('/', (req, res) => {
-  return res.json({ message: 'hello world' });
-});
+const uploads = multer(configMulter);
+
+routes.post('/users', UserController.store);
+routes.post('/sessions', SessionController.store);
+
+routes.use(authMiddleware);
+
+routes.put('/users', UserController.update);
+routes.post('files', uploads.single('file'), FileController.store);
 
 export default routes;
